@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Ezel Quiz 🫏</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #F8F5E6;
+            --text-color: #3D405B;
+            --accent-color: #81B29A; /* Saliegroen */
+            --error-color: #E07A5F;  /* Terracotta */
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        .counter {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* De Foto Kaart */
+        .image-card {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #e0ded0;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 4px solid var(--white);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Knoppen */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            background-color: var(--white);
+            border: 2px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Feedback Kleuren */
+        .btn.correct {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .btn.wrong {
+            background-color: var(--error-color);
+            color: white;
+            border-color: var(--error-color);
+        }
+
+        /* Volgende knop */
+        .next-btn {
+            margin-top: 30px;
+            background-color: var(--text-color);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Eindscherm */
+        .results {
+            padding: 40px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" x-data="quizApp()">
+        
+        <template x-if="!quizFinished">
+            <div>
+                <header>
+                    <div class="counter" x-text="`Ezel ${currentIndex + 1} van ${donkeys.length}`"></div>
+                    <h1>Wie is dit?</h1>
+                </header>
+
+                <div class="image-card">
+                    <img :src="donkeys[currentIndex].image" :alt="donkeys[currentIndex].name">
+                </div>
+
+                <div class="options">
+                    <template x-for="option in currentOptions" :key="option">
+                        <button 
+                            class="btn" 
+                            :class="{ 
+                                'correct': showFeedback && option === donkeys[currentIndex].name,
+                                'wrong': showFeedback && selectedAnswer === option && option !== donkeys[currentIndex].name
+                            }"
+                            @click="checkAnswer(option)"
+                            :disabled="showFeedback"
+                            x-text="option">
+                        </button>
+                    </template>
+                </div>
+
+                <div x-show="showFeedback">
+                    <button class="next-btn" @click="nextQuestion">
+                        <span x-text="currentIndex + 1 === donkeys.length ? 'Bekijk Resultaat' : 'Volgende Ezel'"></span>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <template x-if="quizFinished">
+            <div class="results">
+                <h1>Goed gedaan! 🎉</h1>
+                <p style="margin: 20px 0; font-size: 1.2rem;">
+                    Je had <strong x-text="score"></strong> van de <strong x-text="donkeys.length"></strong> ezels goed geraden.
+                </p>
+                <button class="next-btn" @click="resetQuiz">Opnieuw Spelen</button>
+            </div>
+        </template>
+
+    </div>
+
+    <script>
+        function quizApp() {
+            return {
+                currentIndex: 0,
+                score: 0,
+                selectedAnswer: null,
+                showFeedback: false,
+                quizFinished: false,
+                // Vul hier je eigen data in!
+                donkeys: [
+                    { name: 'Balthasar', image: 'https://placehold.co/600x600?text=Ezel+1' },
+                    { name: 'Frederik', image: 'https://placehold.co/600x600?text=Ezel+2' },
+                    { name: 'Josephine', image: 'https://placehold.co/600x600?text=Ezel+3' },
+                    // Voeg hier de rest van de 17 ezels toe...
+                ],
+                allNames: ['Balthasar', 'Frederik', 'Josephine', 'Lodewijk', 'Bella', 'Sjaak'],
+
+                get currentOptions() {
+                    const correct = this.donkeys[this.currentIndex].name;
+                    // Pak twee willekeurige andere namen
+                    const others = this.allNames
+                        .filter(n => n !== correct)
+                        .sort(() => 0.5 - Math.random())
+                        .slice(0, 2);
+                    return [correct, ...others].sort(() => 0.5 - Math.random());
+                },
+
+                checkAnswer(name) {
+                    this.selectedAnswer = name;
+                    this.showFeedback = true;
+                    if (name === this.donkeys[this.currentIndex].name) {
+                        this.score++;
+                    }
+                },
+
+                nextQuestion() {
+                    if (this.currentIndex + 1 < this.donkeys.length) {
+                        this.currentIndex++;
+                        this.selectedAnswer = null;
+                        this.showFeedback = false;
+                    } else {
+                        this.quizFinished = true;
+                    }
+                },
+
+                resetQuiz() {
+                    this.currentIndex = 0;
+                    this.score = 0;
+                    this.selectedAnswer = null;
+                    this.showFeedback = false;
+                    this.quizFinished = false;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
