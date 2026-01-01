@@ -13,7 +13,7 @@ Alpine.data('quizApp', () => ({
 
     async init() {
         try {
-            const response = await fetch('ezies.json');
+            const response = await fetch('/ezies.json');
             this.donkeys = await response.json();
             this.donkeys.sort(() => 0.5 - Math.random());
             this.allNames = this.donkeys.map(d => d.naam);

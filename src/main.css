@@ -12,11 +12,12 @@ body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    min-height: 100vh;
+    height: 99vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 11px;
+    overflow: hidden;
 }
 
 /* De hoofdcontainer die alles centreert */
@@ -69,9 +70,10 @@ body {
 /* Rechterkant: De Content */
 .content-side {
     padding: 30px;
+    padding-top: 22px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     text-align: center;
 }
 
