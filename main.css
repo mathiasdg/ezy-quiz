@@ -1,0 +1,146 @@
+:root {
+    --bg-color: #F8F5E6;
+    --text-color: #3D405B;
+    --accent-color: #81B29A;
+    --error-color: #E07A5F;
+    --white: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* De hoofdcontainer die alles centreert */
+.quiz-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Breder voor desktop */
+    background-color: var(--white);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Grid Layout: Standaard (mobiel) is 1 kolom */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* Desktop Layout: Vanaf 800px breedte worden het 2 kolommen */
+@media (min-width: 800px) {
+    .layout-grid {
+        grid-template-columns: 1.2fr 1fr; /* Foto iets breder dan de tekst */
+        height: 80vh; /* Bijna volledige hoogte op desktop */
+        min-height: 600px;
+    }
+}
+
+/* Linkerkant: De Foto */
+.image-side {
+    position: relative;
+    background-color: #e0ded0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Op mobiel willen we een vaste hoogte voor de foto */
+@media (max-width: 799px) {
+    .image-side {
+        aspect-ratio: 1/1;
+    }
+}
+
+.image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Rechterkant: De Content */
+.content-side {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (min-width: 800px) {
+    .content-side {
+        padding: 50px;
+        text-align: left; /* Op desktop tekst links uitlijnen voor rust */
+    }
+}
+
+.counter {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+}
+
+h1 { font-size: 1.8rem; margin-bottom: 30px; }
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    background-color: var(--bg-color);
+    border: 2px solid transparent;
+    color: var(--text-color);
+    padding: 18px;
+    border-radius: 18px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #efead4;
+}
+
+.btn.correct {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn.wrong {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.next-btn {
+    margin-top: 30px;
+    background-color: var(--text-color);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Resultaat scherm */
+.results {
+    padding: 60px;
+    text-align: center;
+    width: 100%;
+}

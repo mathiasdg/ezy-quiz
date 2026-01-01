@@ -1,0 +1,138 @@
+[
+  {
+    "id": 1,
+    "naam": "Aida",
+    "fotos": ["aida.webp", "aida2.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 2,
+    "naam": "Emil",
+    "fotos": ["emil.webp", "emil2.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 3,
+    "naam": "Emma",
+    "fotos": ["emma.webp", "emma2.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 4,
+    "naam": "Flora",
+    "fotos": ["flora.webp", "flora2.webp", "flora3.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 5,
+    "naam": "Habibi II",
+    "fotos": ["habibi.webp", "habibi2.webp", "habibi3.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 6,
+    "naam": "Hugo",
+    "fotos": ["hugo.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 7,
+    "naam": "Irma",
+    "fotos": ["irma.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 8,
+    "naam": "Leila",
+    "fotos": ["leila.webp", "leila2.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 9,
+    "naam": "Loupinou",
+    "fotos": ["loupinou.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 10,
+    "naam": "Marianne",
+    "fotos": ["marianne.webp", "marianne2.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 11,
+    "naam": "Miguel",
+    "fotos": ["miguel.webp", "miguel2.webp", "miguel3.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 12,
+    "naam": "Nathan",
+    "fotos": ["nathan.webp", "nathan2.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 13,
+    "naam": "Pedro",
+    "fotos": ["pedro.webp", "pedro2.webp", "pedro3.webp"],
+    "kleur": "bruin",
+    "geboortejaar": 2010,
+    "mama": ""
+  },
+  {
+    "id": 14,
+    "naam": "Speedy",
+    "fotos": ["speedy.webp", "speedy2.webp"],
+    "kleur": "zwart",
+    "geboortejaar": 2002,
+    "mama": ""
+  },
+  {
+    "id": 15,
+    "naam": "Ute",
+    "fotos": ["ute.webp"],
+    "kleur": "grijs",
+    "geboortejaar": 2008,
+    "mama": ""
+  },
+  {
+    "id": 16,
+    "naam": "Victor",
+    "fotos": ["victor.webp", "victor2.webp", "victor3.webp"],
+    "kleur": "bont",
+    "geboortejaar": 2005,
+    "mama": ""
+  },
+  {
+    "id": 17,
+    "naam": "Willy",
+    "fotos": ["willy.webp", "willy2.webp", "willy3.webp", "willy4.webp"],
+    "kleur": "bruin",
+    "geboortejaar": 2010,
+    "mama": ""
+  }
+]
